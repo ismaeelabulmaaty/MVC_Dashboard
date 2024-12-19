@@ -1,0 +1,60 @@
+﻿ @model EmployeeViewModel
+ @inject IunitOfWork _unitofwork
+
+@{
+    var department = new SelectList(_unitofwork.DepartmentRepository.GetAll(), nameof(Department.Id), nameof(Department.Name));
+ }
+
+
+<div class="form-group">
+    <input type="text" asp-for="name" class="form-control" placeholder="Name" />
+    <span asp-validation-for="name" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <input type="text" asp-for="Age" class="form-control" placeholder="Age" />
+    <span asp-validation-for="Age" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <input type="text" asp-for="Salary" class="form-control" placeholder="Salary" />
+</div>
+
+<div class="form-group">
+    <input type="email" asp-for="Email" class="form-control" placeholder="Email" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <input type="text" asp-for="Address" class="form-control" placeholder="Address" />
+    <span asp-validation-for="Address" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber" />
+    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <input type="date" asp-for="HireDate" class="form-control" placeholder="HireDate" />
+    <span asp-validation-for="HireDate" class="text-danger"></span>
+</div>
+
+<div class="form-Chick d-flex align-baseline">
+    <input asp-for="IsActive" class="form-check-input" />
+    <label class="col-form-label " asp-for="IsActive"></label>
+</div>
+
+<div class="form-group">
+
+    <label class="col-form-label " asp-for="Department"></label>
+
+  <select class="form-control" asp-items="@department" asp-for="DepartmetnId"> 
+      <option value="@null">--Select Department</option>
+  </select>
+
+</div>
+
+<div class="form-group">
+    <input type="file" asp-for="ImaegeName" class="form-control-file" placeholder="Imaege" />
+</div>

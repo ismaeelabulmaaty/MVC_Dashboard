@@ -1,0 +1,33 @@
+﻿@model RolesViewModel
+@{
+    ViewData["Title"] = "Creat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<center class="mt-5 pt-3">
+
+    <h1>Creat New Role</h1>
+    <br />
+    <br />
+
+</center>
+
+<div class="w-75 m-auto rounded shadow bg-light mb-5">
+
+    <form asp-action="Creat" class="p-5 mb-3" enctype="multipart/form-data">
+
+        <partial name="partialViews/CreateEditeRolePartial" />
+
+        <input type="submit" value="Creat" class="btn btn-outline-primary" />
+
+        <a asp-action="Index" class="btn btn-outline-secondary text-dark">Back To List</a>
+
+    </form>
+
+</div>
+
+
+
+

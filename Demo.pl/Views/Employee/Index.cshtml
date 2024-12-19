@@ -1,0 +1,96 @@
+﻿
+@model IEnumerable<EmployeeViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<center class="mb-5">
+    <h1 class="mt-5 pt-3">All Employees</h1>
+    <br />
+    <br />
+    <a asp-controller="Employee" asp-action="Creat" class="btn btn-outline-primary">Creat New Employee</a>
+</center>
+
+@* @if(!string.IsNullOrEmpty(TempData["Message"] as string))
+{
+    <div class="alert-primary">
+        @TempData["Message"]
+    </div>                     
+}
+
+
+<div class="alert-warning">
+    @ViewData["Message"]
+</div> 
+
+<div class="alert-success">
+@ViewBag.Message
+</div>
+ *@
+
+<div class="m-4 d-flex justify-content-center align-items-center">
+
+    <form class="row w-75 m-auto" asp-action="Index">
+
+        <div class="col-md-12  d-flex justify-content-center align-items-center">
+
+           <input type="text" name="searchInp" placeholder="Search By Name" class="form-control" />
+
+            <input type="submit" value="Search" class="btn btn-success " />
+
+         </div>
+
+     </form>
+
+ </div>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped table-hover border rounded-lg shadow">
+
+        <thead>
+            <tr class="font-weight-bold">
+               
+                <td >@Html.DisplayNameFor(E =>E.name)</td>
+                <td >@Html.DisplayNameFor(E => E.Age)</td>
+                <td class="font-weight-bold">@Html.DisplayNameFor(E => E.Salary)</td>
+                <td class="font-weight-bold">@Html.DisplayNameFor(E => E.Email)</td>
+                <td class="font-weight-bold">@Html.DisplayNameFor(E => E.Department)</td>
+                <td class="font-weight-bold">@Html.DisplayNameFor(E => E.Address)</td>
+                <td class="font-weight-bold">@Html.DisplayNameFor(E => E.PhoneNumber)</td>
+                <td class="font-weight-bold">@Html.DisplayNameFor(E => E.HireDate)</td>
+                <td class="font-weight-bold">@Html.DisplayNameFor(E => E.IsActive)</td>
+                <td class="font-weight-bold">Details</td>
+                <td class="font-weight-bold">Update</td>
+                <td class="font-weight-bold">Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Employees in Model)
+            {
+                <tr>
+                    <td>@Employees.name</td>
+                    <td>@Employees.Age</td>
+                    <td>@Html.DisplayFor(m => Employees.Salary)</td>
+                    <td>@Html.DisplayFor(m => Employees.Email)</td>
+                    <td>@Employees.Department?.Name</td>
+                    <td>@Html.DisplayFor(m=>Employees.Address)</td>
+                    <td>@Employees.PhoneNumber</td>
+                    <td>@Employees.HireDate</td>
+                    <td>@Html.DisplayFor(m => Employees.IsActive)</td>
+
+                    <partial model="@Employees.Id.ToString()" name="_ButtonsPartail" />
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+    <div class="m-5 alert alert-warning">
+        <h3>There is no Employees</h3>
+    </div>
+}
